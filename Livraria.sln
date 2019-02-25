@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.Persistance", "Liv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.IoC", "Livraria.IoC\Livraria.IoC.csproj", "{B6915552-D5F4-45BE-B15C-F02BBB91A849}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraia.Test", "Livraia.Test\Livraia.Test.csproj", "{B762724C-6207-4B00-ACD8-77F9F2E5D82F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.Test", "Livraria.Test\Livraria.Test.csproj", "{40A6DF24-581F-40EC-996D-2B9EEB4B9857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A6DF24-581F-40EC-996D-2B9EEB4B9857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A6DF24-581F-40EC-996D-2B9EEB4B9857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A6DF24-581F-40EC-996D-2B9EEB4B9857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A6DF24-581F-40EC-996D-2B9EEB4B9857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
