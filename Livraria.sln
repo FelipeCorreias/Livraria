@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Livraria.Web", "Livraria.Web\Livraria.Web.csproj", "{D6A59F79-3C13-48B1-AAEB-C2464281EFC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.Domain", "Livraria.Domain\Livraria.Domain.csproj", "{1973E74C-4C99-4113-8895-2FB9EFB27F48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.Application", "Livraria.Application\Livraria.Application.csproj", "{D50AB6EA-CFAF-468C-B066-B20DA0E5910F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.Persistance", "Livraria.Persistance\Livraria.Persistance.csproj", "{51F2CC4B-CE23-4524-B8BD-75C74D7EB98A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraria.IoC", "Livraria.IoC\Livraria.IoC.csproj", "{B6915552-D5F4-45BE-B15C-F02BBB91A849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Livraia.Test", "Livraia.Test\Livraia.Test.csproj", "{B762724C-6207-4B00-ACD8-77F9F2E5D82F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6A59F79-3C13-48B1-AAEB-C2464281EFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A59F79-3C13-48B1-AAEB-C2464281EFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A59F79-3C13-48B1-AAEB-C2464281EFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A59F79-3C13-48B1-AAEB-C2464281EFC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1973E74C-4C99-4113-8895-2FB9EFB27F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1973E74C-4C99-4113-8895-2FB9EFB27F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1973E74C-4C99-4113-8895-2FB9EFB27F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1973E74C-4C99-4113-8895-2FB9EFB27F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D50AB6EA-CFAF-468C-B066-B20DA0E5910F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D50AB6EA-CFAF-468C-B066-B20DA0E5910F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D50AB6EA-CFAF-468C-B066-B20DA0E5910F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D50AB6EA-CFAF-468C-B066-B20DA0E5910F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F2CC4B-CE23-4524-B8BD-75C74D7EB98A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F2CC4B-CE23-4524-B8BD-75C74D7EB98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F2CC4B-CE23-4524-B8BD-75C74D7EB98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F2CC4B-CE23-4524-B8BD-75C74D7EB98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6915552-D5F4-45BE-B15C-F02BBB91A849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B762724C-6207-4B00-ACD8-77F9F2E5D82F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABEE0F4B-03A2-4D92-848D-617BD0FD4AD2}
+	EndGlobalSection
+EndGlobal
