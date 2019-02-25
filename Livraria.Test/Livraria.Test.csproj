@@ -12,4 +12,9 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Livraria.Application\Livraria.Application.csproj" />
+    <ProjectReference Include="..\Livraria.Persistance\Livraria.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>

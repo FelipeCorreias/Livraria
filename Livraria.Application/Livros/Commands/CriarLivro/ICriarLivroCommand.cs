@@ -1,9 +1,10 @@
-﻿using Livraria.Application.Livros.Models;
+﻿using System.Threading.Tasks;
+using Livraria.Application.Livros.Models;
 
 namespace Livraria.Application.Livros.Commands.CriarLivro
 {
     public interface ICriarLivroCommand
     {
-        void Execute(LivroModel livroModel);
+        Task<bool> Execute(LivroModel livroModel);
     }
 }
