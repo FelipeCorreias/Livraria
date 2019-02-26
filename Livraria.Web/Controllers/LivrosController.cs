@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Livraria.Domain.Livros;
-using Livraria.Persistance;
+using Livraria.Application.Livros.Models;
+using Livraria.Application.Livros.Commands.CriarLivro;
+using Livraria.Application.Livros.Queries.GetLivro;
+using System.IO;
 
 namespace Livraria.Web.Controllers
 {
@@ -14,25 +15,27 @@ namespace Livraria.Web.Controllers
     [ApiController]
     public class LivrosController : ControllerBase
     {
-        private readonly DataBaseService _context;
+        private readonly ICriarLivroCommand _criarLivroCommand;
+        private readonly IGetLivroQuery _getLivroQuery;
 
-        public LivrosController(DataBaseService context)
+        public LivrosController(ICriarLivroCommand criarLivroCommand, IGetLivroQuery getLivroQuery)
         {
-            _context = context;
+            _criarLivroCommand = criarLivroCommand;
+            _getLivroQuery = getLivroQuery;
         }
 
         // GET: api/Livros
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Livro>>> GetLivro()
+        public async Task<ActionResult<IEnumerable<LivroModel>>> GetLivro([FromQuery] LivroModelConsulta livroModelConsulta)
         {
-            return await _context.Livro.ToListAsync();
+            return Ok();
         }
 
         // GET: api/Livros/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Livro>> GetLivro(string id)
+        [HttpGet("{ISBN}")]
+        public async Task<ActionResult<LivroModel>> GetLivro(string ISBN)
         {
-            var livro = await _context.Livro.FindAsync(id);
+            var livro = await _getLivroQuery.Execute(ISBN);
 
             if (livro == null)
             {
@@ -42,65 +45,76 @@ namespace Livraria.Web.Controllers
             return livro;
         }
 
-        // PUT: api/Livros/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLivro(string id, Livro livro)
-        {
-            if (id != livro.ISBN)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Livros/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutLivro(string id, Livro livro)
+        //{
+        //    if (id != livro.ISBN)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _context.Entry(livro).State = EntityState.Modified;
+        //    _context.Entry(livro).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LivroExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!LivroExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Livros
         [HttpPost]
-        public async Task<ActionResult<Livro>> PostLivro(Livro livro)
+        public async Task<ActionResult<LivroModel>> PostLivro([FromForm] LivroModel livro, IFormFile ImagemCapa)
         {
-            _context.Livro.Add(livro);
-            await _context.SaveChangesAsync();
+            byte[] capaBytes;
+            using (var ms = new MemoryStream())
+            {
+                ImagemCapa.CopyTo(ms);
+                capaBytes = ms.ToArray();
+            }
+            livro.Capa = capaBytes;
+            var retorno = await _criarLivroCommand.Execute(livro);
 
-            return CreatedAtAction("GetLivro", new { id = livro.ISBN }, livro);
+            if (retorno)
+            {
+                return CreatedAtAction("GetLivro", new { ISBN = livro.ISBN }, livro);
+            }
+
+            return NotFound();
         }
 
         // DELETE: api/Livros/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Livro>> DeleteLivro(string id)
-        {
-            var livro = await _context.Livro.FindAsync(id);
-            if (livro == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<ActionResult<Livro>> DeleteLivro(string id)
+        //{
+        //    var livro = await _context.Livro.FindAsync(id);
+        //    if (livro == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Livro.Remove(livro);
-            await _context.SaveChangesAsync();
+        //    _context.Livro.Remove(livro);
+        //    await _context.SaveChangesAsync();
 
-            return livro;
-        }
+        //    return livro;
+        //}
 
-        private bool LivroExists(string id)
-        {
-            return _context.Livro.Any(e => e.ISBN == id);
-        }
+        //private bool LivroExists(string id)
+        //{
+        //    return _context.Livro.Any(e => e.ISBN == id);
+        //}
     }
 }

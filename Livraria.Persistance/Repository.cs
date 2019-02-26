@@ -48,6 +48,11 @@ namespace Livraria.Persistance
         {
             return await _dbSet.FindAsync(id);
         }
+
+        public virtual async Task<T> GetAsync(string id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
         #endregion
 
         #region Insert Records with or without UOW

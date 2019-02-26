@@ -33,6 +33,7 @@ namespace Livraria.Application.Interfaces
         Task<ICollection<T>> GetAllAsyn();
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
         Task<T> GetAsync(int id);
+        Task<T> GetAsync(string id);
         List<T> GetWithFilterAndInclude(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, params Expression<Func<T, object>>[] includes);
         T Update(T t, object key);
         Task<T> UpdateAsyn(T t, object key);

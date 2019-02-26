@@ -24,6 +24,7 @@ namespace Livraria.Application.Livros.Commands.CriarLivro
             livro.ISBN = livroModel.ISBN;
             livro.Nome = livroModel.Nome;
             livro.Autor = livroModel.Autor;
+            livro.DataPublicacao = livroModel.DataPublicacao;
             livro.Preco = livroModel.Preco;
             livro.Capa = livroModel.Capa;
 
