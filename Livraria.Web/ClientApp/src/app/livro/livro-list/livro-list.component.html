@@ -1,0 +1,29 @@
+<h4>Livros</h4>
+<p *ngIf="!livros"><em>Loading...</em></p>
+<table class='table table-striped' *ngIf="livros">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let livro of livros">
+      <td nowrap><img src="data:image/jpeg;base64,{{ livro.capa }}" width="50%" /></td>
+      <td nowrap>
+        <p><b>ISBN: </b>{{ livro.isbn }}</p>
+        <p><b>Nome: </b>{{ livro.nome }}</p>
+        <p><b>Autor: </b>{{ livro.autor }}</p>
+        <p><b>Data da Publicação: </b>{{ livro.dataPublicacao }}</p>
+      </td>
+      <td nowrap><h2>{{ livro.preco }}</h2></td>
+      <td nowrap>
+        <button class="btn btn-md btn-block btn-warning">Editar</button>
+        <button class="btn btn-md btn-block btn-danger" (click)="delete(livro.isbn)">Deletar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />

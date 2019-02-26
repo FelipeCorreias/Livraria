@@ -30,7 +30,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\livro\livro-create\livro-create.component.ts" />
+    <None Remove="ClientApp\src\app\livro\livro-list\livro-list.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Livraria.IoC\Livraria.IoC.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\livro\livro-create\livro-create.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\livro\livro-list\livro-list.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
