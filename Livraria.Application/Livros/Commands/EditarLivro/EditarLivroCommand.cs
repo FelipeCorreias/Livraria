@@ -6,29 +6,33 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Livraria.Application.Livros.Commands.CriarLivro
+namespace Livraria.Application.Livros.Commands.EditarLivro
 {
-    public class CriarLivroCommand : ICriarLivroCommand
+  public  class EditarLivroCommand : IEditarLivroCommand
     {
         private readonly IRepository<Livro> _db;
 
-        public CriarLivroCommand(IRepository<Livro> db)
+        public EditarLivroCommand(IRepository<Livro> db)
         {
             _db = db;
         }
 
-        public async Task<bool> Execute(LivroInputModel livroModel, byte[] capa)
+        public async Task<bool> Execute(string ISBN, LivroInputModel livroModel)
         {
-            Livro livro = new Livro();
+            var livro = await _db.GetAsync(ISBN);
+
+            if (livro == null) {
+                return false;
+            }
 
             livro.ISBN = livroModel.ISBN;
             livro.Nome = livroModel.Nome;
             livro.Autor = livroModel.Autor;
             livro.DataPublicacao = livroModel.DataPublicacao;
             livro.Preco = livroModel.Preco;
-            livro.Capa = capa;
 
-            await _db.AddAsyn(livro);
+            await _db.UpdateAsyn(livro, livroModel.ISBN);
+
             return true;
         }
     }

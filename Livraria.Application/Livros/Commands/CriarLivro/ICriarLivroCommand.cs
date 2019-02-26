@@ -5,6 +5,6 @@ namespace Livraria.Application.Livros.Commands.CriarLivro
 {
     public interface ICriarLivroCommand
     {
-        Task<bool> Execute(LivroModel livroModel);
+        Task<bool> Execute(LivroInputModel livroModel, byte[] capa);
     }
 }

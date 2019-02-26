@@ -8,6 +8,10 @@ using Livraria.Application.Livros.Models;
 using Livraria.Application.Livros.Commands.CriarLivro;
 using Livraria.Application.Livros.Queries.GetLivro;
 using System.IO;
+using Livraria.Application.Livros.Queries.GetLivros;
+using Livraria.Application.Common.Models;
+using Livraria.Application.Livros.Commands.EditarLivro;
+using Livraria.Application.Livros.Commands.DeletarLivro;
 
 namespace Livraria.Web.Controllers
 {
@@ -17,18 +21,25 @@ namespace Livraria.Web.Controllers
     {
         private readonly ICriarLivroCommand _criarLivroCommand;
         private readonly IGetLivroQuery _getLivroQuery;
+        private readonly IGetLivrosQuery _getLivrosQuery;
+        private readonly IEditarLivroCommand _editarLivroCommand;
+        private readonly IDeletarLivroCommand _deletarLivroCommand;
 
-        public LivrosController(ICriarLivroCommand criarLivroCommand, IGetLivroQuery getLivroQuery)
+        public LivrosController(ICriarLivroCommand criarLivroCommand, IGetLivroQuery getLivroQuery, IGetLivrosQuery getLivrosQuery, IEditarLivroCommand editarLivroCommand, IDeletarLivroCommand deletarLivroCommand)
         {
             _criarLivroCommand = criarLivroCommand;
             _getLivroQuery = getLivroQuery;
+            _getLivrosQuery = getLivrosQuery;
+            _editarLivroCommand = editarLivroCommand;
+            _deletarLivroCommand = deletarLivroCommand;
         }
+
 
         // GET: api/Livros
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LivroModel>>> GetLivro([FromQuery] LivroModelConsulta livroModelConsulta)
+        public ActionResult<RetornoConsulta<LivroModel>> GetLivro([FromQuery] LivroBuscaModel livroModelConsulta)
         {
-            return Ok();
+            return _getLivrosQuery.Execute(livroModelConsulta);
         }
 
         // GET: api/Livros/5
@@ -45,39 +56,23 @@ namespace Livraria.Web.Controllers
             return livro;
         }
 
-        //// PUT: api/Livros/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutLivro(string id, Livro livro)
-        //{
-        //    if (id != livro.ISBN)
-        //    {
-        //        return BadRequest();
-        //    }
+        // PUT: api/Livros/5
+        [HttpPut("{ISBN}")]
+        public async Task<ActionResult<LivroModel>> PutLivro(string ISBN, LivroInputModel livro)
+        {
+            var retorno = await _editarLivroCommand.Execute(ISBN, livro);
 
-        //    _context.Entry(livro).State = EntityState.Modified;
+            if (retorno)
+            {
+                return await _getLivroQuery.Execute(ISBN);
+            }
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!LivroExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
+            return NotFound();
+        }
 
         // POST: api/Livros
         [HttpPost]
-        public async Task<ActionResult<LivroModel>> PostLivro([FromForm] LivroModel livro, IFormFile ImagemCapa)
+        public async Task<ActionResult<LivroModel>> PostLivro([FromForm] LivroInputModel livro, IFormFile ImagemCapa)
         {
             byte[] capaBytes;
             using (var ms = new MemoryStream())
@@ -85,36 +80,31 @@ namespace Livraria.Web.Controllers
                 ImagemCapa.CopyTo(ms);
                 capaBytes = ms.ToArray();
             }
-            livro.Capa = capaBytes;
-            var retorno = await _criarLivroCommand.Execute(livro);
+
+            var retorno = await _criarLivroCommand.Execute(livro, capaBytes);
 
             if (retorno)
             {
                 return CreatedAtAction("GetLivro", new { ISBN = livro.ISBN }, livro);
             }
 
-            return NotFound();
+            return NoContent();
         }
 
         // DELETE: api/Livros/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<Livro>> DeleteLivro(string id)
-        //{
-        //    var livro = await _context.Livro.FindAsync(id);
-        //    if (livro == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpDelete("{ISBN}")]
+        public async Task<ActionResult<LivroModel>> DeleteLivro(string ISBN)
+        {
+            var livro = await _getLivroQuery.Execute(ISBN);
+            var retorno = await _deletarLivroCommand.Execute(ISBN);
 
-        //    _context.Livro.Remove(livro);
-        //    await _context.SaveChangesAsync();
+            if (retorno)
+            {
+                return livro;
+            }
 
-        //    return livro;
-        //}
+            return NotFound();
+        }
 
-        //private bool LivroExists(string id)
-        //{
-        //    return _context.Livro.Any(e => e.ISBN == id);
-        //}
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Livraria.Application.Livros.Models
 {
-   public class LivroModelConsulta: Filtro
+   public class LivroBuscaModel: Filtro
     {
         public string ISBN { get; set; }
         public string Autor { get; set; }

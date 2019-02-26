@@ -1,6 +1,9 @@
 ﻿using Livraria.Application.Interfaces;
 using Livraria.Application.Livros.Commands.CriarLivro;
+using Livraria.Application.Livros.Commands.DeletarLivro;
+using Livraria.Application.Livros.Commands.EditarLivro;
 using Livraria.Application.Livros.Queries.GetLivro;
+using Livraria.Application.Livros.Queries.GetLivros;
 using Livraria.Domain.Livros;
 using Livraria.Persistance;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +24,9 @@ namespace Livraria.IoC
             //Livros
             services.AddTransient<ICriarLivroCommand, CriarLivroCommand>();
             services.AddTransient<IGetLivroQuery, GetLivroQuery>();
-
+            services.AddTransient<IGetLivrosQuery, GetLivrosQuery>();
+            services.AddTransient<IEditarLivroCommand, EditarLivroCommand>();
+            services.AddTransient<IDeletarLivroCommand, DeletarLivroCommand>();
         }
     }
 }
