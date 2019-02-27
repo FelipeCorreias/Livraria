@@ -40,10 +40,14 @@ export class LivroListComponent implements OnInit {
   }
 
   delete(ISBN: string) {
-    this._livroService.DeletarLivro(ISBN).subscribe();
-    this.livros = this.livros.filter((elem) => {
-      return elem.isbn !== ISBN;
-    });
+
+    if (confirm("Você tem certeza que quer deletar este livro?")) {
+      this._livroService.DeletarLivro(ISBN).subscribe();
+      this.livros = this.livros.filter((elem) => {
+        return elem.isbn !== ISBN;
+      });
+    }
+    
   }
 
 }

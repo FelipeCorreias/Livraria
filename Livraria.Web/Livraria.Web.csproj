@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\livro\livro-create\livro-create.component.ts" />
     <None Remove="ClientApp\src\app\livro\livro-list\livro-list.component.ts" />
   </ItemGroup>
 

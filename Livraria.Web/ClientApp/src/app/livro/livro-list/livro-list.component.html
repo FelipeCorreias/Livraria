@@ -16,11 +16,11 @@
         <p><b>ISBN: </b>{{ livro.isbn }}</p>
         <p><b>Nome: </b>{{ livro.nome }}</p>
         <p><b>Autor: </b>{{ livro.autor }}</p>
-        <p><b>Data da Publicação: </b>{{ livro.dataPublicacao }}</p>
+        <p><b>Data da Publicação: </b>{{ livro.dataPublicacao | date : 'dd/MM/yyyy' }}</p>
       </td>
-      <td nowrap><h2>{{ livro.preco }}</h2></td>
+      <td nowrap><h2>{{ livro.preco | currency:'BRL':true:'1.2-2' }}</h2></td>
       <td nowrap>
-        <button class="btn btn-md btn-block btn-warning">Editar</button>
+        <button class="btn btn-md btn-block btn-warning" [routerLink]="['/livro/edit/',livro.isbn]">Editar</button>
         <button class="btn btn-md btn-block btn-danger" (click)="delete(livro.isbn)">Deletar</button>
       </td>
     </tr>

@@ -1,11 +1,11 @@
-<h4>Incluir Livro</h4>
+<h4>Editar Livro</h4>
 
-<form #livroForm="ngForm" (ngSubmit)="submit(livroForm.form);">
+<form #livroForm="ngForm" (ngSubmit)="submit(livroForm.form);" *ngIf="livro">
   <div class="alert alert-success" *ngIf="formularioEnviado">
-    Livro criado com sucesso!
+    Livro salvo com sucesso!
   </div>
   <div class="alert alert-danger" *ngIf="erroEnviarFormulario">
-    Erro ao criar o livro!
+    Erro ao salvar o livro!
   </div>
   <div *ngIf="isbn.touched && isbn.errors">
     <div class="alert alert-danger" *ngIf="isbn.errors.required">
@@ -31,28 +31,32 @@
     <input type="text"
            class="form-control"
            name="isbn"
-           ngModel
+           [ngModel]="livro.isbn"
            #isbn="ngModel"
            required
-           minlength="10" />
+           minlength="10"
+           disabled
+           />
   </div>
   <div class="form-group col-sm-12">
     <label for="nome"><b>Nome</b></label>
     <input type="text"
            class="form-control"
            name="nome"
-           ngModel
+           [ngModel]="livro.nome"
            #nome="ngModel"
-           required />
+           required
+            />
   </div>
   <div class="form-group col-sm-12">
     <label for="autor"><b>Autor</b></label>
     <input type="text"
            class="form-control"
            name="autor"
-           ngModel
+           [ngModel]="livro.autor"
            #autor="ngModel"
-           required />
+           required
+            />
   </div>
   <div class="input-group">
     <div class="form-group col-sm-6">
@@ -61,27 +65,29 @@
              class="form-control"
              name="dataPublicacao"
              placeholder="yyyy-MM-dd"
-             ngModel
-             #dataPublicacao="ngModel" />
+             [ngModel]="livro.dataPublicacao | date: 'yyyy-MM-dd' "
+             #dataPublicacao="ngModel"
+              />
     </div>
     <div class="form-group col-sm-6">
       <label for="preco"><b>Preço</b></label>
       <input type="text"
              class="form-control "
              name="preco"
-             ngModel
-             #preco="ngModel" />
+             [ngModel] ="livro.preco"
+             #preco="ngModel"
+              />
     </div>
   </div>
-  <div class="form-group col-sm-12">
+  <!--<div class="form-group col-sm-12">
     <label for="capa"><b>Capa</b></label>
     <input type="file"
            class="form-control"
            name="capa"
            ngModel
            #capa="ngModel" (change)="onFileChange($event)" />
-  </div>
+  </div>-->
   <div class="form-group col-sm-12">
-    <button class="btn btn-primary" [disabled]="!livroForm.valid">Enviar</button>
+    <button class="btn btn-primary" [disabled]="!livroForm.valid">Salvar</button>
   </div>
 </form>

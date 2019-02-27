@@ -4,5 +4,5 @@ export interface Livro {
     nome?: string;
     preco?: number;
     dataPublicacao?: Date;
-    capa?: string;
+    capa?: File;
 }

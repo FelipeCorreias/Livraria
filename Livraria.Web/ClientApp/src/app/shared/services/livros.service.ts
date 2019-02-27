@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Livro } from '../model/livro.model';
 import { Retorno } from '../model/retorno.model';
+
 @Injectable()
 export class LivroService {
   public _http: HttpClient;
@@ -19,7 +20,16 @@ export class LivroService {
   }
 
   CriarLivro(livro: Livro) {
-    return this._http.post('/api/Livros', livro);
+    let input = new FormData();
+    
+    input.append('isbn', livro.isbn);
+    input.append('nome', livro.nome);
+    input.append('autor', livro.autor);
+    input.append('preco', livro.preco.toString());
+    input.append('dataPublicacao', livro.dataPublicacao.toString());
+    input.append('ImagemCapa', livro.capa);
+    
+    return this._http.post('/api/Livros', input);
   }
 
   EditarLivro(livro: Livro) {
