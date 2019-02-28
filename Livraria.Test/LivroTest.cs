@@ -19,7 +19,7 @@ namespace Livraria.Test
         [TestMethod]
         public void CriarLivro()
         {
-            var db = new DataBaseService();
+            var db = new DataBaseServiceFactory().Create();
             var repo = new Repository<DataBaseService,Livro>(db);
             var criarLivroCommand = new CriarLivroCommand(repo);
 
@@ -40,7 +40,7 @@ namespace Livraria.Test
         [TestMethod]
         public void GetLivro()
         {
-            var db = new DataBaseService();
+            var db = new DataBaseServiceFactory().Create();
             var repo = new Repository<DataBaseService, Livro>(db);
             var getLivroQuery = new GetLivroQuery(repo);
 
@@ -52,7 +52,7 @@ namespace Livraria.Test
         [TestMethod]
         public void GetLivros()
         {
-            var db = new DataBaseService();
+            var db = new DataBaseServiceFactory().Create();
             var repo = new Repository<DataBaseService, Livro>(db);
             var getLivrosQuery = new GetLivrosQuery(repo);
 
@@ -64,7 +64,7 @@ namespace Livraria.Test
         [TestMethod]
         public void EditarLivro()
         {
-            var db = new DataBaseService();
+            var db = new DataBaseServiceFactory().Create();
             var repo = new Repository<DataBaseService, Livro>(db);
             var editarLivroCommand = new EditarLivroCommand(repo);
 
@@ -85,7 +85,7 @@ namespace Livraria.Test
         [TestMethod]
         public void DeletarLivro()
         {
-            var db = new DataBaseService();
+            var db = new DataBaseServiceFactory().Create();
             var repo = new Repository<DataBaseService, Livro>(db);
             var deletarLivroCommand = new DeletarLivroCommand(repo);
 

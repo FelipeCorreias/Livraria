@@ -1,9 +1,11 @@
 using Livraria.IoC;
+using Livraria.Persistance;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
@@ -29,6 +31,10 @@ namespace Livraria.Web
                 c.SwaggerDoc("v1", null);
             });
 
+            services.AddDbContext<DataBaseService>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
             DIContainer.RegisterDependencies(services);
 
             // In production, the Angular files will be served from this directory
