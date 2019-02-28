@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { NgxMaskModule } from 'ngx-mask';
+import { CurrencyMaskModule } from "ngx-currency-mask";
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -24,6 +26,8 @@ import { LivroService } from './shared/services/livros.service';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    NgxMaskModule.forRoot(),
+    CurrencyMaskModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: LivroComponent, pathMatch: 'full' },

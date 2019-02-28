@@ -26,6 +26,7 @@ export class LivroCreateComponent implements OnInit {
 
   submit(form) {
     this.livro = form.value;
+    console.log(this.livro);
     this.livro.capa = this.file;
     this._livroService.CriarLivro(this.livro).subscribe(suc => {
       form.reset();

@@ -75,7 +75,7 @@
              class="form-control "
              name="preco"
              [ngModel] ="livro.preco"
-             #preco="ngModel"
+             #preco="ngModel" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
               />
     </div>
   </div>

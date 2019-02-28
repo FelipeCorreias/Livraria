@@ -11,12 +11,16 @@ Algumas das tecnologias utilizadas
  - .NET CORE 2.2
  - WebAPI
  - Swagger
-  - Sql Server
+ - Sql Server
  - EntityFramework
  - Linq
  - Migrations
  - Angular
+ 
+ Rodando a aplicação...
 
+ 1. Executar o camando **update-database** para criar a base de dados
+ 2. Rodar a aplicação
 
 
 

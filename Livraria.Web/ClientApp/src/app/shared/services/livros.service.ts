@@ -25,7 +25,7 @@ export class LivroService {
     input.append('isbn', livro.isbn);
     input.append('nome', livro.nome);
     input.append('autor', livro.autor);
-    input.append('preco', livro.preco.toString());
+    input.append('preco', livro.preco.toString().replace(".",","));
     input.append('dataPublicacao', livro.dataPublicacao.toString());
     input.append('ImagemCapa', livro.capa);
     
